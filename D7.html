@@ -159,7 +159,10 @@
          Scrivi una funzione che faccia scomparire la prima lista non ordinata
       */
 
-      const hideFirstUl = function () {};
+      const hideFirstUl = function () {
+        const firstLi = document.getElementById("firstList");
+        firstLi.remove();
+      };
 
       hideFirstUl();
 
@@ -167,22 +170,43 @@
          Scrivi una funzione che renda verde il background di ogni lista non ordinata
         */
 
-      const paintItGreen = function () {};
+      const paintItGreen = function () {
+        const uls = document.querySelectorAll("ul");
+        for (let i = 0; i < uls.length; i++) {
+          uls[i].style.backgroundColor = "green";
+        }
+      };
+
+      paintItGreen();
 
       /* ESERCIZIO 9
          Scrivi una funzione che rimuova l'ultima lettera dall'h1 ogni volta che l'utente lo clicca
         */
 
-      const makeItClickable = function () {};
-
+      const makeItClickable = function () {
+        const title = document.querySelector("h1");
+        title.onclick = function () {
+          title.classList.toggle("myHeading");
+          title.style.userSelect = "none";
+          title.innerText = title.innerText(0, -1);
+        };
+      };
       makeItClickable();
 
       /* ESERCIZIO 10
          Crea una funzione che, al click sul footer, riveli l'URL del link interno come contenuto di un alert()
         */
 
-      const revealFooterLink = function () {};
+      const revealFooterLink = function (content) {
+        const footer = document.querySelector("footer");
+        footer.style.cursor = "pointer";
+        footer.onclick = function () {
+          const link = document.querySelector("footer a");
+          const URL = link.getAttribute("href");
 
+          alert(URL);
+        };
+      };
       revealFooterLink();
 
       /* ESERCIZIO 11
