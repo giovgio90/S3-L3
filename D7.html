@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="D7.css" />
     <title>Document</title>
     <style>
       *,
@@ -29,7 +28,7 @@
       }
 
       .myHeading {
-        color: #ff00d6;
+        color: #684762;
       }
     </style>
   </head>
@@ -57,13 +56,13 @@
 
       <a href="https://epicode.com/it/">Questo link porta al sito di Epicode</a>
 
-      <div>
+      <div class="paragrafo">
         <p>Questo testo è un placeholder per gli esercizi</p>
       </div>
     </div>
 
     <div>
-      <p>Anche questo testo è per gli esercizi</p>
+      <p class="paragrafo">Anche questo testo è per gli esercizi</p>
       <h2 id="changeMyColor" style="color: #ff00d6">Apri questa pagina con VSCode per scoprire gli esercizi</h2>
     </div>
 
@@ -95,18 +94,23 @@
       */
 
       const addClassToTitle = function () {
-        const titlePage = document.getElementsByTagName("h1")[0];
-        titlePage.classList.add("title-page");
-        return titlePage;
+        const title = document.querySelector("h1");
+        title.classList.remove("myClass");
+        title.classList.add("myHeading");
       };
-
-      console.log(addClassToTitle());
+      addClassToTitle();
 
       /* ESERCIZIO 3
          Scrivi una funzione per che cambi il testo dei p figli di un div
         */
 
-      const changePcontent = function () {};
+      const changePcontent = function () {
+        const modP = document.querySelectorAll("div p");
+        for (let i = 0; i < modP.length; i++) {
+          const paraP = modP[i];
+          paraP.innerText = "Questo è il nuovo paragrafo modificato";
+        }
+      };
 
       changePcontent();
 
@@ -114,32 +118,42 @@
          Scrivi una funzione che cambi la proprietà href di ogni link (tranne quello nel footer) con il valore https://www.google.com
         */
 
-      const changeUrls = function () {
-        const changeLinks = document.getElementsByTagName("a");
+      const addToTheSecond = function () {
+        const newLink = document.querySelectorAll("a:not(footer a)");
+        for (let i = 0; i < newLink.length; i++) {
+          const modLink = newLink[i];
+          modLink.href = "https://www.google.com";
+        }
       };
 
-      changeUrls();
+      addToTheSecond();
 
       /* ESERCIZIO 5
          Scrivi una funzione che aggiunga un nuovo elemento lista alla seconda lista non ordinata
       */
 
-      const addToTheSecond = function () {
-        const classDiv = document.getElementsByTagName("div")[1];
-
-        const newList = document.createElement("ul");
-        console.log(newList);
-        newList.innerText = "";
+      const changeUrls = function (newstri) {
+        const ul = document.getElementById("secondList");
+        const li = document.createElement("li");
+        ul.appendChild(li);
+        li.innerText = newstri;
       };
-      addToTheSecond();
+
+      changeUrls("nuovo inserimento in lista");
 
       /* ESERCIZIO 6
          Scrivi una funzione che aggiunga un secondo paragrafo al primo div
       */
 
-      const addParagraph = function () {};
+      const addParagraph = function (text) {
+        const selectDiv = document.querySelectorAll("div")[0];
 
-      addParagraph();
+        let newParag = document.createElement("p");
+        selectDiv.appendChild(newParag);
+        newParag.innerText = text;
+      };
+
+      addParagraph("ecco un nuovo paragrafo");
 
       /* ESERCIZIO 7
          Scrivi una funzione che faccia scomparire la prima lista non ordinata
@@ -153,12 +167,7 @@
          Scrivi una funzione che renda verde il background di ogni lista non ordinata
         */
 
-      const paintItGreen = function () {
-        const backgColor = document.getElementById("#firstList #secondList");
-        backgColor.style.backgroundcolor = "#3F51B5";
-      };
-
-      backgColor.onclick = paintItGreen;
+      const paintItGreen = function () {};
 
       /* ESERCIZIO 9
          Scrivi una funzione che rimuova l'ultima lettera dall'h1 ogni volta che l'utente lo clicca
